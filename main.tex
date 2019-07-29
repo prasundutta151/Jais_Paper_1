@@ -43,6 +43,24 @@ $^{3}$Another Department, Different Institution, Street Address, City Postal Cod
 
 \section{Analytical Calculation}
 \subsection{Visibility}
+Each antenna of a radio intergerometer records the electric fields incident on it's cross dipoles modified by the complex gain arising from the entire electronics chain. In addition to the electronic chain in the antenna and beyond, the ionosphere also adds to the complex gain. The visibilities are calculated by doing cross correlation between the electric fields from each pair of antenna using digital correlators. The correlations are performed for a certain integration time such that the visibilities hence calculated are not affected by the timewidth smearing. In this work, we consider all effects in a single frequency channel and hence we will not explecitely write the frequency dependence. While doing the data analysis, with help of primary calibrators and self calibration method the antenna gains are calculated and the visibilities are calibrated for the complex gains and prepared for further analysis. Note that the gain calibdation can be only done to certain accuracy dependeing on the quality of the primary calibration, reciever noise and other factors.
+
+In this work, we access the effect of the residual gain in the visibility prepared for the science analysis. The residual complex gain from antenna A can be modeled as 
+\begin{equation}
+ g_A(t) = \left [ 1+\delta_A(t) \right ]e^{i\phi_A(t)},
+\end{equation}
+where both $\delta_A$ and $\phi_A$ are much smaller than unity and randomly distributed. 
+Hence, the visbility $V_{AB}^M(t)$ measured by two antenna A and B and calibrated for the gain can be written in terms of  the visibility function from the sky $V_{AB}^S = < E^*_A E_B>$ and the residual gains as
+\begin{equation}
+    V_{AB}^M(t) = < \left [ 1+\delta_A(t) \right ] \left [1+\delta_B(t)\right ] e^{i(\phi_B(t)-\phi_A(t))}> V_{AB}^S.
+\end{equation}
+
+
+We assume that these quantities follow Gaussian distribution with mean zero. It has been observed that there exists non-zero time correlation in the residual gains, hence,
+\begin{equation}
+\xi_A(\tau) = \langle \delta_A(t) \delta_A(t+\tau)\rangle,\ \ \ \ \ \ \ \  \sigma_{\delta}^2 =  \langle \delta_A^2 \rangle.
+\end{equation}
+
 Visibility is defined as the correlation of the output signal from two different antenna. The radio antenna measures the electric field signal coming from the sky. Let's say the sky signal is $E_A$ and $E_B$ for antenna A and B respectively. The measured electric field differs from the true sky electric field because of instrumental response and atmospheric effects which is collectively known as the gain of the antenna. This gain is in general a time dependent complex quantity. The quantity visibility which is the correlation of output electric field coming from antenna pair A, B can be given as:
 \begin{equation}
     V_{AB}^O = <g^*_A(t)g_B(t)> < E^*_A(t)E_B(t)>
