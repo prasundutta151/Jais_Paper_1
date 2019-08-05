@@ -43,24 +43,44 @@ $^{3}$Another Department, Different Institution, Street Address, City Postal Cod
 
 \section{Analytical Calculation}
 \subsection{Visibility}
-Each antenna of a radio intergerometer records the electric fields incident on it's cross dipoles modified by the complex gain arising from the entire electronics chain. In addition to the electronic chain in the antenna and beyond, the ionosphere also adds to the complex gain. The visibilities are calculated by doing cross correlation between the electric fields from each pair of antenna using digital correlators. The correlations are performed for a certain integration time such that the visibilities hence calculated are not affected by the timewidth smearing. In this work, we consider all effects in a single frequency channel and hence we will not explecitely write the frequency dependence. While doing the data analysis, with help of primary calibrators and self calibration method the antenna gains are calculated and the visibilities are calibrated for the complex gains and prepared for further analysis. Note that the gain calibdation can be only done to certain accuracy dependeing on the quality of the primary calibration, reciever noise and other factors.
+Each antenna of a radio interferometer records the electric fields incident on its cross dipoles modified by the complex gain arising from the entire electronic chain. In addition to the electronic chain, the ionosphere also adds to the complex gain. The interferometers evaluate the spatial coherence function of the source or the visibility as a function of the inverse angular scale in the sky or baseline.  The visibilities are calculated by doing cross correlating the electric fields from each pair of antenna using digital correlates. A pair of antenna measure the value of the visibility function at a baseline given by their positional separation projected perpendicular to the direction of observation in units of observing wavelengths. The correlations are performed for a certain integration time such that the visibilities hence calculated are not affected by the time-width smearing. In this work, we consider all effects in a single frequency channel and hence we will not explicitly write the frequency dependence. While doing the data analysis, with help of primary calibrators and self calibration method the antenna gains are calculated as a function of time and the visibilities are calibrated for the complex gains and prepared for further analysis. Note that the gain calibration can be only done to certain accuracy depending on the quality of the primary calibrators, receiver noise, ionospheric stability etc. We shall refer to the uncalibrated part of the gain as residual gain.
 
-In this work, we access the effect of the residual gain in the visibility prepared for the science analysis. The residual complex gain from antenna A can be modeled as 
+If a high dynamic range observation is required to resolve the science questions, the residual gains need to be minimised to a certain accuracy. In this work, we access the effect of the residual gain in the visibility prepared for the science analysis. The residual complex gain from antenna A can be modelled as 
 \begin{equation}
  g_A(t) = \left [ 1+\delta_A(t) \right ]e^{i\phi_A(t)},
 \end{equation}
 where both $\delta_A$ and $\phi_A$ are much smaller than unity and randomly distributed. 
-Hence, the visbility $V_{AB}^M(t)$ measured by two antenna A and B and calibrated for the gain can be written in terms of  the visibility function from the sky $V_{AB}^S = < E^*_A E_B>$ and the residual gains as
+Hence, the visibility $V_{AB}^M(t)$ measured by antenna pair A and B in presence of the residual gain can be written in terms of  the visibility function from the sky $V_{AB}^S = < E^*_A E_B>$  as
 \begin{equation}
-    V_{AB}^M(t) = < \left [ 1+\delta_A(t) \right ] \left [1+\delta_B(t)\right ] e^{i(\phi_B(t)-\phi_A(t))}> V_{AB}^S.
+    V_{AB}^M(t) = < \left [ 1+\delta_A(t) \right ] \left [1+\delta_B(t)\right ] e^{i(\phi_B(t)-\phi_A(t))}> V_{AB}^S,
 \end{equation}
-
-
-We assume that these quantities follow Gaussian distribution with mean zero. It has been observed that there exists non-zero time correlation in the residual gains, hence,
+note that a primary assumption in radio interferometry is that the specific intensity and hence the visibility function of the source is independent of time (reference synthesis imaging).  Clearly, the excess or the residual visibility recorded by the interferometer due to the residual gain error can be written as
 \begin{equation}
-\xi_A(\tau) = \langle \delta_A(t) \delta_A(t+\tau)\rangle,\ \ \ \ \ \ \ \  \sigma_{\delta}^2 =  \langle \delta_A^2 \rangle.
+    V_{AB}^R (t)= V_{AB}^M(t) - V_{AB}^S.
 \end{equation}
+It is required to estimate  the residual visibilities in case of a high dynamic range observations. If we assume that $
+V_{AB}^S = V_{AB}^{S, H} + V_{AB}^{S, L} $, where $\mid V_{AB}^{S, H} \mid >> \mid V_{AB}^{S, L} \mid $, then retrive the $V_{AB}^{S, L} $ signal from the observed visibilities it is required that $\mid V_{AB}^R (t) \mid < V_{AB}^{S, L} $. 
 
+The statistical nature of the signal is often extracted from the power spectrum of the sky brightness distribution. Bharadwaj and Sethi .. have showed that the power spectrum of the sky brightness distribution at a given baseline can be directly estimated by correlating the visibilities at the same baseline . In eqn~(2), we have neglected the receiver noise. In most of the radio interferometric observations the receiver noise present at a given baseline supersedes the sky visibility at that baseline. Cite has proposed a visibility based the power spectrum estimator, where instead of correlating the visibilities in the same baselines, visibility correlation at nearby baselines are used, that is 
+\begin{equation}
+    \mathcal{E} [P(U)]  = \langle \mid V(\vec{U})^* V(\vec{U}+\Delta \vec{U}) \mid \rangle.
+\end{equation}
+This estimator assumes that the noise  is not correlated between any other baseline, however, the visibility function of the source is correlated in the nearby baselines. In this work we shall investigate the validity of this assumption. 
+
+\subsection{Modelling the gain errors}
+We assume that the quantities $\delta_A(t)$ and $\phi_A(t)$ that characterises the residual gain error  quantities follow Gaussian distribution with mean zero. It has been observed that there exists non-zero time correlation in the residual gains. We quantify this time correlation using a two point correlation function as 
+
+\begin{eqnarray}
+\xi_{A}(\tau) &=& \langle \delta_A(t) \delta_A(t+\tau)\rangle,\ \ \ \ \ \ \ \  \sigma_{\delta}^2 =  \xi_A(0) =  \langle \delta_A^2 \rangle \\ \nonumber
+\Phi_{A}(\tau) &=& \langle \phi_A(t) \phi_A(t+\tau)\rangle,\ \ \ \ \ \ \ \  \sigma_{\phi}^2 =  \xi_A(0) =  \langle \phi_A^2 \rangle.
+\end{eqnarray}
+Here  eg, $\xi_A (t) = 0\  \forall\  \tau \neq 0$ corresponds to the case of no time correlation. Here we assume that residual gain errors from different antennae are not correlated and  there is no correlation between the amplitude and the phase gain errors of any  antenna. 
+
+
+======================
+
+
+We assume that 
 Visibility is defined as the correlation of the output signal from two different antenna. The radio antenna measures the electric field signal coming from the sky. Let's say the sky signal is $E_A$ and $E_B$ for antenna A and B respectively. The measured electric field differs from the true sky electric field because of instrumental response and atmospheric effects which is collectively known as the gain of the antenna. This gain is in general a time dependent complex quantity. The quantity visibility which is the correlation of output electric field coming from antenna pair A, B can be given as:
 \begin{equation}
     V_{AB}^O = <g^*_A(t)g_B(t)> < E^*_A(t)E_B(t)>
